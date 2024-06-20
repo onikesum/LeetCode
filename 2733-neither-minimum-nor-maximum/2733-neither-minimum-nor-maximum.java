@@ -1,12 +1,22 @@
 class Solution {
-    public int findNonMinOrMax(int[] nums) {
-        Arrays.sort(nums);
-        int result = 0;
-        if(nums.length <= 2)
-            return -1;
-        for(int i = 1; i < nums.length-1; i++){
-                result = nums[i];
+    public int findNonMinOrMax(final int[] nums) {
+        int min = nums[0], max = nums[0], value = nums[0];
+
+        for(final int num : nums) {
+            if(min > num) {
+                value = min;
+                min = num;
+            } else if(max < num) {
+                value = max;
+                max = num;
+            } else {
+                value = num;
+            }
+
+            if(value != max && value != min)
+                return value;
         }
-        return result;
+
+        return -1;
     }
 }
